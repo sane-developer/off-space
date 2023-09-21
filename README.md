@@ -11,6 +11,7 @@ The main agenda of this project is to put my software architecture design knowle
 <ul>
   <li>C# 11</li>
   <li>ASP.NET Core Web API</li>
+  <li>Entity Framework Core</li>
   <li>NUnit</li>
   <li>Docker</li>
   <li>SQLite</li>
