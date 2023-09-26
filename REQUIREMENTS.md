@@ -1,32 +1,26 @@
-# Nodes
+# V1
+
+In the first version of the product the focus lies on implementation of outpost management system.
+
+### Assumptions & Restrictions
 
 <ul>
-  <li>Each node must be adjacent to at least one of other nodes,</li>
-  <ul>
-    <li>The root is the only exception.</li>
-  </ul>
-  <li>Each node can be moved,</li>
-  <li>Each node can be merged,</li>
-  <li>Each node can be split,</li>
-  <li>Each node has weight of 1 unit.</li>
-</ul>
-
-# Nodes: Movement
-
-TODO: Validate and finish.
-
-# Nodes: Merging
-
-TODO: Validate and finish.
-
-# Nodes: Splitting
-
-TODO: Validate and finish.
-
-# Outposts
-
-<ul>
-  <li>Each outpost can be made of 32 nodes in total,</li>
-  <li>Each outpost can reach up to 7 levels vertically and horizontally,</li>
-  <li>Each outpost cannot exceed depth of 1; meaning it is a 3D structure laid on 2D grid.</li>
+  <li>There is only 100 verven blocks available for building,</li>
+  <li>Each verven block has weight of 1 unit and the center of its mass is in the exact center of the cube at all times,</li>
+  <li>Each outpost can be made of 24 verven blocks in total,</li>
+  <li>Each outpost can only be expanded vertically and horizontally,</li>
+  <li>Each outpost can reach up to 7 levels width and height wise.</li>
 </ul> 
+
+### Functionality
+
+<ul>
+  <li>Creating an outpost,</li>
+  <li>Removing an outpost,</li>
+  <li>Changing an outpost location,</li>
+  <li>Associating a verven block with an outpost,</li>
+  <li>Separating a verven block from an outpost,</li>
+  <li>Merging verven blocks in an outpost,</li>
+  <li>Splitting verven blocks in an outpost,</li>
+  <li>Validating an outpost stability before associating a new block.</li>
+</ul>
