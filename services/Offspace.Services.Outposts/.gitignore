@@ -35,6 +35,10 @@ bld/
 
 *.env
 
+# Database files
+
+*.sqlite
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
