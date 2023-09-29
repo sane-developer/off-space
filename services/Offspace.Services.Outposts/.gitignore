@@ -35,9 +35,16 @@ bld/
 
 *.env
 
-# Database files
+# Ignore SQLite database files
 
 *.sqlite
+*.db
+*.sqlite3
+
+# Ignore database journal files
+
+*.sqlite-journal
+*.db-journal
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
