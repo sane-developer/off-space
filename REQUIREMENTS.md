@@ -14,7 +14,7 @@ In the first version of the product the focus lies on implementation of outpost 
 ### Restrictions: Verven blocks
 
 <ul>
-  <li>Each block has shape of a cube,<li>
+  <li>Each block has shape of a cube,</li>
   <li>Each block has weight of 1 unit,</li>
   <li>Each block's center of mass is in the exact center of the cube at all times,</li>
   <li>Each block is reusable, therefore it cannot be disposed,</li>
