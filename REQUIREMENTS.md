@@ -1,35 +1,90 @@
 # V1
 
-In the first version of the product the focus lies on implementation of outpost management system.
+### Goal
 
-### Restrictions: Outposts
+Outpost management system implementation.
 
-<ul>
-  <li>Each outpost can be made of 24 verven blocks in total,</li>
-  <li>Each outpost can only be expanded vertically and horizontally,</li>
-  <li>Each outpost can reach up to 7 levels width and height wise,</li>
-  <li>Each outpost can only be located in Switzerland, Italy, Bulgaria and Romania.</li>
-</ul> 
-
-### Restrictions: Verven blocks
+### Glossary
 
 <ul>
-  <li>Each block has shape of a cube,</li>
-  <li>Each block has weight of 1 unit,</li>
-  <li>Each block's center of mass is in the exact center of the cube at all times,</li>
-  <li>Each block is reusable, therefore it cannot be disposed,</li>
-  <li>Each block may be unused, meaning it is waiting to be attached to an outpost.</li>
+  <li>Clusters - Groups of merged verven blocks,</li>
+  <li>Singles - Blocks which are not parts of any cluster.</li>
 </ul>
 
 ### Functionality
 
 <ul>
-  <li>Creating outpost,</li>
-  <li>Removing outpost,</li>
-  <li>Changing outpost location,</li>
-  <li>Associating verven block with an outpost,</li>
-  <li>Separating verven block from an outpost,</li>
-  <li>Merging verven blocks in an outpost,</li>
-  <li>Splitting verven blocks in an outpost,</li>
-  <li>Validating outpost stability before associating a new block.</li>
+  <li>Creating outposts,</li>
+  <li>Removing outposts,</li>
+  <li>Changing outposts names,</li>
+  <li>Changing outposts locations,</li>
+  <li>Associating blocks with outposts,</li>
+  <li>Detaching blocks from outposts,</li>
+  <li>Merging blocks inside outposts,</li>
+  <li>Splitting blocks inside outposts.</li>
+</ul>
+
+### Assumptions: Verven blocks
+
+<ul>
+  <li>Each block has shape of a cube,</li>
+  <li>Each block is reusable, it cannot be disposed,</li>
+  <li>Each block may be unused, meaning it is waiting to be attached to an outpost.</li>
+</ul>
+
+### Restrictions: Creating outposts
+
+Action is not permitted when the name of the outpost has already been used.
+
+### Restrictions: Removing outposts
+
+Action is not permitted when the outpost has any blocks associated with it.
+
+### Restrictions: Changing outposts names
+
+Action is not permitted when the name of the outpost has already been used.
+
+### Restrictions: Changing outposts locations
+
+Action is not permitted when the new location is not Bulgaria, Germany, Italy, Romania or Switzerland.
+
+### Restrictions: Associating blocks with outposts
+
+Action is not permitted when:
+
+<ul>
+  <li>The depth of the building changed,</li>
+  <li>The count of used blocks reached 24,</li>
+  <li>The width or height of the outpost exceeded 7,</li>
+  <li>The block is unreachable from any other block.</li>
+</ul>
+
+### Restrictions: Detaching blocks from outposts
+
+Action is not permitted when:
+
+<ul>
+  <li>The block is merged with another,</li>
+  <li>The absence of the block rendered any other unreachable.</li>
+</ul>
+
+### Restrictions: Merging blocks in outposts
+
+Action is not permitted when:
+
+<ul>
+  <li>When both blocks do not share a side,</li>
+  <li>When both blocks are parts of different clusters.</li>
+  <ul>
+    <li>This feature will be added in the future versions.</li>
+  </ul>
+</ul>
+
+### Restrictions: Splitting blocks in outposts
+
+Action is not permitted when:
+
+<ul>
+  <li>The block is not part of a merged figure,</li>
+  <li>The absence of this block rendered any other unreachable within the cluster.</li>
 </ul>
