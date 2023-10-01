@@ -5,6 +5,7 @@ There was once a group of mad but genius scientists in the very far future who l
 # Agenda
 
 <ul>
+  <li>Defining clear project requirements,</li>
   <li>Designing reliable RESTful API,</li>
   <li>Designing reliable databases,</li>
   <li>Implementing authentication & authorization procedures,</li>
