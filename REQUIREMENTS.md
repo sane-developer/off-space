@@ -2,89 +2,52 @@
 
 ### Goal
 
-Outpost management system implementation.
-
-### Glossary
+Delivery of a back-end system that allows the user to:
 
 <ul>
-  <li>Clusters - Groups of merged verven blocks,</li>
-  <li>Singles - Blocks which are not parts of any cluster.</li>
-</ul>
-
-### Functionality
-
-<ul>
-  <li>Creating outposts,</li>
-  <li>Removing outposts,</li>
-  <li>Changing outposts names,</li>
-  <li>Changing outposts locations,</li>
-  <li>Associating blocks with outposts,</li>
-  <li>Detaching blocks from outposts,</li>
-  <li>Merging blocks inside outposts,</li>
-  <li>Splitting blocks inside outposts.</li>
-</ul>
-
-### Assumptions: Verven blocks
-
-<ul>
-  <li>Each block has shape of a cube,</li>
-  <li>Each block is reusable, it cannot be disposed,</li>
-  <li>Each block may be unused, meaning it is waiting to be attached to an outpost.</li>
-</ul>
-
-### Restrictions: Creating outposts
-
-Action is not permitted when the name of the outpost has already been used.
-
-### Restrictions: Removing outposts
-
-Action is not permitted when the outpost has any blocks associated with it.
-
-### Restrictions: Changing outposts names
-
-Action is not permitted when the name of the outpost has already been used.
-
-### Restrictions: Changing outposts locations
-
-Action is not permitted when the new location is not Bulgaria, Germany, Italy, Romania or Switzerland.
-
-### Restrictions: Associating blocks with outposts
-
-Action is not permitted when:
-
-<ul>
-  <li>The depth of the building changed,</li>
-  <li>The count of used blocks reached 24,</li>
-  <li>The width or height of the outpost exceeded 7,</li>
-  <li>The block is unreachable from any other block.</li>
-</ul>
-
-### Restrictions: Detaching blocks from outposts
-
-Action is not permitted when:
-
-<ul>
-  <li>The block is merged with another,</li>
-  <li>The absence of the block rendered any other unreachable.</li>
-</ul>
-
-### Restrictions: Merging blocks in outposts
-
-Action is not permitted when:
-
-<ul>
-  <li>When both blocks do not share a side,</li>
-  <li>When both blocks are parts of different clusters.</li>
+  <li>Create a new outpost,</li>
+  <li>Remove an existing outpost,</li>
   <ul>
-    <li>This feature will be added in the future versions.</li>
+    <li>This action is only possible when there are no blocks associated with the outpost.</li>
   </ul>
+  <li>Change an outpost name,</li>
+  <li>Change an outpost location,</li>
+  <ul>
+    <li>This action is only possible when there are no blocks associated with the outpost.</li>
+  </ul>
+  <li>Attach a block to an outpost,</li>
+  <li>Detach a block from an outpost,</li>
+  <li>Change an attached block's position within an outpost.</li>
 </ul>
 
-### Restrictions: Splitting blocks in outposts
-
-Action is not permitted when:
+### Assumptions: The blocks
 
 <ul>
-  <li>The block is not part of a merged figure,</li>
-  <li>The absence of this block rendered any other unreachable within the cluster.</li>
+  <li>Each block may be a "root",</li>
+  <li>Each block is of the same size,</li>
+  <li>Each block is of the same shape,</li>
+  <li>Each block can be attached to an outpost,</li>
+  <li>Each block can be detached from an outpost,</li>
+  <li>Each block must be able to reach any other block,</li>
+  <li>There are only 100 available blocks for outposts constructions.</li>
+</ul>
+
+### Assumptions: The "root" blocks
+
+<ul>
+  <li>The root block must be placed on the lowest possible level,</li>
+  <li>The root block may not be moved until it is the last block in the outpost,</li>
+  <li>The root block cannot be detached until it is the last block in the outpost.</li>
+</ul>
+
+In case of multiple blocks on the ground, it is required to define which one is the root.
+
+### Assumptions: The outposts
+
+<ul>
+  <li>Each outpost must have a unique name,</li>
+  <li>Each outpost may contain up to 25 blocks,</li>
+  <li>Each outpost may only have one root block,</li>
+  <li>Each outpost may only be expanded vertically and horizontally,</li>
+  <li>Each outpost may reach up to 7 levels vertically and horizontally.</li>
 </ul>
