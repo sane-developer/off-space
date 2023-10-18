@@ -9,11 +9,11 @@ public class Block
     ///     The id of the block.
     /// </summary>
     public int Id { get; set; }
-    
+
     /// <summary>
-    ///     Indicates whether the block is the root of the outpost.
+    ///     The type of the block.
     /// </summary>
-    public bool IsRoot { get; set; }
+    public string Type { get; set; } = default!;
     
     /// <summary>
     ///     The position of the block in the outpost grid.
