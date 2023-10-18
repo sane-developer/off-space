@@ -37,14 +37,14 @@ public sealed class BlockConstraint : IEntityConstraint
             .Property(block => block.Type)
             .HasColumnName(TypeColumnName)
             .HasColumnType("TEXT")
-            .IsRequired();
+            .IsRequired(false);
 
         modelBuilder
             .Entity<Block>()
             .Property(block => block.Position)
             .HasColumnName(PositionColumnName)
             .HasColumnType("INT")
-            .IsRequired();
+            .IsRequired(false);
 
         modelBuilder
             .Entity<Block>()
