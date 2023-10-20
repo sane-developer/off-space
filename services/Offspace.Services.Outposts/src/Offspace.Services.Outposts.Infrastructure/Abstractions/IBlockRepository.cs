@@ -7,30 +7,17 @@ namespace Offspace.Services.Outposts.Infrastructure.Abstractions;
 /// </summary>
 public interface IBlockRepository
 {
-    /// <summary>
-    ///     Gets a <see cref="Block"/> entity by its id.
-    /// </summary>
-    /// <param name="blockId">The id of the requested block entity.</param>
-    /// <returns><i>The requested block entity</i> if it has been found in the database; else <i>null</i>.</returns>
-    ValueTask<Block?> GetBlockAsync(int blockId);
+    public ValueTask<Block?> GetBlockAsync(int blockId);
     
-    /// <summary>
-    ///     Updates the <see cref="Block.OutpostId"/> property of a <see cref="Block"/> entity.
-    /// </summary>
-    /// <param name="block">The block entity to be updated.</param>
-    /// <param name="newOutpostId">The id of the outpost the block will be moved to.</param>
-    /// <returns>
-    ///     TODO: Fill this once decided how to handle the return value.
-    /// </returns>
-    Task<bool> UpdateBlockOutpostAsync(Block block, int? newOutpostId);
+    public Task<Block?> GetBlockAsync(Predicate<Block> predicate);
     
-    /// <summary>
-    ///     Updates the <see cref="Block.Position"/> property of a <see cref="Block"/> entity.
-    /// </summary>
-    /// <param name="block">The block entity to be updated.</param>
-    /// <param name="newPosition">The new position of the block within the outpost.</param>
-    /// <returns>
-    ///     TODO: Fill this once decided how to handle the return value.
-    /// </returns>
-    Task<bool> UpdateBlockPositionAsync(Block block, int newPosition);
+    public Task<List<Block>> GetBlocksAsync(Predicate<Block> predicate);
+    
+    public void UpdateBlockType(Block block, bool? isRoot);
+    
+    public void UpdateBlockOutpost(Block block, int? outpostId);
+    
+    public void UpdateBlockPosition(Block block, int? position);
+    
+    public Task<bool> PushChangesAsync();
 }
