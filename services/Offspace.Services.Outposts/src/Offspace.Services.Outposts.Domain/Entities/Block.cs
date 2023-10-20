@@ -1,4 +1,6 @@
-﻿namespace Offspace.Services.Outposts.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Offspace.Services.Outposts.Domain.Entities;
 
 /// <summary>
 ///     Represents a verven block entity in the database.
@@ -29,4 +31,22 @@ public class Block
     ///     The outpost the block belongs to.
     /// </summary>
     public Outpost? Outpost { get; set; }
+    
+    /// <summary>
+    ///     The value indicating whether the block is a root.
+    /// </summary>
+    [NotMapped]
+    public bool IsRoot => Type is RootBlockType;
+    
+    /// <summary>
+    ///     The type string corresponding to block which is a root.
+    /// </summary>
+    [NotMapped]
+    public const string RootBlockType = "root";
+    
+    /// <summary>
+    ///     The type string corresponding to block which is not a root.
+    /// </summary>
+    [NotMapped]
+    public const string RegularBlockType = "regular";
 }

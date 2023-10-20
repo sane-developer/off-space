@@ -4,13 +4,9 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AssemblyVersion>1.0.0.5</AssemblyVersion>
-        <FileVersion>1.0.0.5</FileVersion>
+        <AssemblyVersion>1.0.0.6</AssemblyVersion>
+        <FileVersion>1.0.0.6</FileVersion>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Services\" />
-    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Offspace.Services.Outposts.Domain\Offspace.Services.Outposts.Domain.csproj" />
