@@ -4,7 +4,7 @@ using Offspace.Services.Outposts.Infrastructure.Abstractions;
 namespace Offspace.Services.Outposts.Infrastructure.Services;
 
 /// <summary>
-///     Represents a service responsible for allowing easier interacting with <see cref="Block"/> entity table.
+///     Represents a service which enables the user to manipulate the state of the verven blocks.
 /// </summary>
 public sealed class BlockService : IBlockService
 {
