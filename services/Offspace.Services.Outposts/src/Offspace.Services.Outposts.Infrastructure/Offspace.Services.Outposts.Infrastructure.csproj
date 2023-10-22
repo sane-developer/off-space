@@ -4,12 +4,31 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AssemblyVersion>1.0.0.7</AssemblyVersion>
-        <FileVersion>1.0.0.7</FileVersion>
+        <AssemblyVersion>1.0.1.0</AssemblyVersion>
+        <FileVersion>1.0.1.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Offspace.Services.Outposts.Domain\Offspace.Services.Outposts.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Abstractions\IBlockRepository.cs" />
+      <Compile Remove="Abstractions\IBlockService.cs" />
+      <Compile Remove="Abstractions\IOutpostRepository.cs" />
+      <Compile Remove="Abstractions\IOutpostService.cs" />
+      <Compile Remove="Extensions\ServicesExtensions.cs" />
+      <Compile Remove="Repositories\BlockRepository.cs" />
+      <Compile Remove="Repositories\OutpostRepository.cs" />
+      <Compile Remove="Services\BlockService.cs" />
+      <Compile Remove="Services\OutpostService.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Abstractions\" />
+      <Folder Include="Extensions\" />
+      <Folder Include="Repositories\" />
+      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>
