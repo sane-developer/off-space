@@ -1,10 +1,21 @@
 global using FastEndpoints;
 global using FluentValidation;
 
+using Offspace.Services.Outposts.API.Extensions;
+using Offspace.Services.Outposts.Infrastructure.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
+builder.Configuration.UpdatePath();
+builder.Configuration.UpdateApplicationSettings();
+builder.Configuration.UpdateEnvironmentVariables();
+
+var connectionString = Environment.GetEnvironmentVariable("CONNECTION")!;
+
+builder.Services.AddDatabaseContexts(connectionString);
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+builder.Services.AddFastEndpoints();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
