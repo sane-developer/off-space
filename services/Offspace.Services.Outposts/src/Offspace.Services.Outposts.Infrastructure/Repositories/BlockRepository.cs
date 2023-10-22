@@ -7,7 +7,7 @@ using Offspace.Services.Outposts.Infrastructure.Contexts;
 namespace Offspace.Services.Outposts.Infrastructure.Repositories;
 
 /// <summary>
-///     Represents a repository responsible for interacting with the <see cref="Block"/> entity table.
+///     Represents a repository that enables the services to interact with the <see cref="Block"/> table in the database.
 /// </summary>
 public sealed class BlockRepository : IBlockRepository
 {
