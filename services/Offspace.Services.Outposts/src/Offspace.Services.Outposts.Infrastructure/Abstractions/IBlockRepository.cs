@@ -3,7 +3,7 @@
 namespace Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 /// <summary>
-///     Represents a repository that enables the services to interact with the <see cref="Block"/> table in the database.
+///     Represents a contract for a repository that enables the services to interact with the <see cref="Block"/> table in the database.
 /// </summary>
 public interface IBlockRepository
 {
