@@ -4,8 +4,8 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AssemblyVersion>1.0.1.4</AssemblyVersion>
-        <FileVersion>1.0.1.4</FileVersion>
+        <AssemblyVersion>1.0.1.5</AssemblyVersion>
+        <FileVersion>1.0.1.5</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,8 +14,6 @@
 
     <ItemGroup>
       <Compile Remove="Extensions\ServicesExtensions.cs" />
-      <Compile Remove="Repositories\OutpostRepository.cs" />
-      <Compile Remove="Services\OutpostService.cs" />
       <Compile Remove="Extensions\**" />
     </ItemGroup>
 
