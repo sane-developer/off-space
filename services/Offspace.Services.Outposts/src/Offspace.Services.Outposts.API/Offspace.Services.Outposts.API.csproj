@@ -5,8 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-        <AssemblyVersion>1.0.1.7</AssemblyVersion>
-        <FileVersion>1.0.1.7</FileVersion>
+        <AssemblyVersion>1.0.1.8</AssemblyVersion>
+        <FileVersion>1.0.1.8</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,28 +20,11 @@
       <Content Include="..\..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
-      <Content Remove="Endpoints\**" />
-      <Content Remove="Requests\**" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Offspace.Services.Outposts.Domain\Offspace.Services.Outposts.Domain.csproj" />
       <ProjectReference Include="..\Offspace.Services.Outposts.Infrastructure\Offspace.Services.Outposts.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="Endpoints\**" />
-      <Compile Remove="Requests\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="Endpoints\**" />
-      <EmbeddedResource Remove="Requests\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Endpoints\**" />
-      <None Remove="Requests\**" />
     </ItemGroup>
 
 </Project>
