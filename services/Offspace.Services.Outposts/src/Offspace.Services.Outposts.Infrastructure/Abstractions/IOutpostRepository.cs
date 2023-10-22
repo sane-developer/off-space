@@ -3,19 +3,9 @@
 namespace Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 /// <summary>
-///     Represents a set of methods required for interacting with the <see cref="Outpost"/> entity table.
+///     Represents a contract for a repository that enables the services to interact with the <see cref="Outpost"/> table in the database.
 /// </summary>
 public interface IOutpostRepository
 {
-    public ValueTask<Outpost?> GetOutpostAsync(int outpostId);
     
-    public Task<List<Outpost>> GetOutpostsAsync();
-    
-    public void CreateOutpostAsync(Outpost outpost);
-    
-    public void UpdateOutpostNameAsync(Outpost outpost, string newName);
-    
-    public void DeleteOutpostAsync(Outpost outpost);
-    
-    public Task<bool> PushChangesAsync();
 }
