@@ -73,6 +73,20 @@ public sealed class BlockRepository : IBlockRepository
     }
 
     /// <summary>
+    ///     Gets the number of blocks which are attached to the outpost with the specified id.
+    /// </summary>
+    /// <param name="outpostId">
+    ///     The id of the outpost which blocks should be counted.
+    /// </param>
+    /// <returns>
+    ///     The number of blocks which are attached to the outpost with the specified id.
+    /// </returns>
+    public Task<int> GetBlockCountAsync(int outpostId)
+    {
+        return _context.Blocks.CountAsync(block => block.OutpostId == outpostId);
+    }
+
+    /// <summary>
     ///     Updates the type of the specified block.
     /// </summary>
     /// <param name="block">
