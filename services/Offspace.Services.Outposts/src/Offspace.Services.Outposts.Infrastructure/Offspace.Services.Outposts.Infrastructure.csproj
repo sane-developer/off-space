@@ -4,17 +4,12 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AssemblyVersion>1.0.1.6</AssemblyVersion>
-        <FileVersion>1.0.1.6</FileVersion>
+        <AssemblyVersion>1.0.1.8</AssemblyVersion>
+        <FileVersion>1.0.1.8</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Offspace.Services.Outposts.Domain\Offspace.Services.Outposts.Domain.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="Extensions\ServicesExtensions.cs" />
-      <Compile Include="Extensions\RegistrationExtensions.cs" />
     </ItemGroup>
 
 </Project>
