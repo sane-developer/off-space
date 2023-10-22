@@ -5,11 +5,12 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-        <AssemblyVersion>1.0.1.0</AssemblyVersion>
-        <FileVersion>1.0.1.0</FileVersion>
+        <AssemblyVersion>1.0.1.7</AssemblyVersion>
+        <FileVersion>1.0.1.7</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="dotenv.net" Version="3.1.2" />
         <PackageReference Include="FastEndpoints" Version="5.18.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Offspace.Services.Outposts.Infrastructure.Abstractions;
 using Offspace.Services.Outposts.Infrastructure.Contexts;
 using Offspace.Services.Outposts.Infrastructure.Repositories;
@@ -12,14 +13,14 @@ namespace Offspace.Services.Outposts.Infrastructure.Extensions;
 public static class RegistrationExtensions
 {
     /// <summary>
-    ///     Registers the database contexts used by the infrastructure layer.
+    ///     Registers the services used by the infrastructure layer.
     /// </summary>
-    public static void AddDatabaseContexts(this IServiceCollection services)
+    public static void AddServices(this IServiceCollection services)
     {
-        services.AddDbContext<BlockDatabaseContext>();
-        services.AddDbContext<OutpostDatabaseContext>();
+        services.AddSingleton<IBlockService, BlockService>();
+        services.AddSingleton<IOutpostService, OutpostService>();
     }
-
+    
     /// <summary>
     ///     Registers the repositories used by the infrastructure layer.
     /// </summary>
@@ -28,13 +29,13 @@ public static class RegistrationExtensions
         services.AddSingleton<IBlockRepository, BlockRepository>();
         services.AddSingleton<IOutpostRepository, OutpostRepository>();
     }
-
+    
     /// <summary>
-    ///     Registers the services used by the infrastructure layer.
+    ///     Registers the database contexts used by the infrastructure layer.
     /// </summary>
-    public static void AddServices(this IServiceCollection services)
+    public static void AddDatabaseContexts(this IServiceCollection services, string connectionString)
     {
-        services.AddSingleton<IBlockService, BlockService>();
-        services.AddSingleton<IOutpostService, OutpostService>();
+        services.AddDbContext<BlockDatabaseContext>(options => options.UseSqlite(connectionString));
+        services.AddDbContext<OutpostDatabaseContext>(options => options.UseSqlite(connectionString));
     }
 }
