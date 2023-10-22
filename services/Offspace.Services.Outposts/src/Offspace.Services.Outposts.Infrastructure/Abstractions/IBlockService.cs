@@ -3,7 +3,7 @@
 namespace Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 /// <summary>
-///     Represents a set of methods allowing easier interacting with <see cref="Block"/> entity table.
+///     Represents a service which enables the user to manipulate the state of the verven blocks.
 /// </summary>
 public interface IBlockService
 {
