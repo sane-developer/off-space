@@ -36,6 +36,23 @@ public sealed class BlockService : IBlockService
     }
 
     /// <summary>
+    ///     Gets the block with the specified position in requested outpost.
+    /// </summary>
+    /// <param name="position">
+    ///     The position of requested block entity.
+    /// </param>
+    /// <param name="outpostId">
+    ///     The id of the outpost which block should be returned.
+    /// </param>
+    /// <returns>
+    ///     The <see cref="Block"/> entity with the specified position in requested outpost if it exists, otherwise null.
+    /// </returns>
+    public async Task<Block?> GetBlockAsync(int position, int outpostId)
+    {
+        return await _repository.GetBlockAsync(block => block.Position == position && block.OutpostId == outpostId);
+    }
+
+    /// <summary>
     ///     Gets the root block of the outpost with the specified id.
     /// </summary>
     /// <param name="outpostId">
@@ -46,7 +63,21 @@ public sealed class BlockService : IBlockService
     /// </returns>
     public async Task<Block?> GetRootBlockInOutpostAsync(int outpostId)
     {
-        return await _repository.GetBlockAsync(block => block.OutpostId == outpostId && block.IsRoot);
+        return await _repository.GetBlockAsync(block => block.OutpostId == outpostId && block.Type == Block.RootBlockType);
+    }
+
+    /// <summary>
+    ///     Gets the number of blocks which are attached to the outpost with the specified id.
+    /// </summary>
+    /// <param name="outpostId">
+    ///     The id of the outpost which blocks should be counted.
+    /// </param>
+    /// <returns>
+    ///     The number of blocks which are attached to the outpost with the specified id.
+    /// </returns>
+    public async Task<int> GetBlockCountInOutpostAsync(int outpostId)
+    {
+        return await _repository.GetBlockCountAsync(outpostId);
     }
 
     /// <summary>

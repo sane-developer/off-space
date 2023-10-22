@@ -7,5 +7,5 @@ namespace Offspace.Services.Outposts.Infrastructure.Abstractions;
 /// </summary>
 public interface IOutpostRepository
 {
-    
+    public ValueTask<Outpost?> GetOutpostAsync(int outpostId);
 }

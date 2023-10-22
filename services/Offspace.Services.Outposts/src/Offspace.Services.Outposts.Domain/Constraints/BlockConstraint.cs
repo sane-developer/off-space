@@ -8,47 +8,56 @@ namespace Offspace.Services.Outposts.Domain.Constraints;
 /// </summary>
 public static class BlockConstraint
 {
-    private const string TableName = "block";
+    /// <summary>
+    ///     The maximum number of blocks that can be attached to all outposts.
+    /// </summary>
+    public const int AvailableBlocks = 100;
     
-    private const string IdColumnName = "id";
+    /// <summary>
+    ///     The maximum number of blocks that can be attached to a single outpost.
+    /// </summary>
+    public const int AvailableBlocksPerOutpost = 24;
     
-    private const string TypeColumnName = "type";
-    
-    private const string PositionColumnName = "position";
-    
-    private const string OutpostIdColumnName = "outpost_id";
-    
+    /// <summary>
+    ///     Applies the constraints of the <see cref="Block"/> entity to the specified model builder.
+    /// </summary>
     public static void Apply(ModelBuilder modelBuilder)
     {
+        const string tableName = "block";
+        const string idColumnName = "id";
+        const string typeColumnName = "type";
+        const string positionColumnName = "position";
+        const string outpostIdColumnName = "outpost_id";
+        
         modelBuilder
             .Entity<Block>()
-            .ToTable(TableName);
+            .ToTable(tableName);
         
         modelBuilder
             .Entity<Block>()
             .Property(block => block.Id)
-            .HasColumnName(IdColumnName)
+            .HasColumnName(idColumnName)
             .HasColumnType("INTEGER")
             .IsRequired();
         
         modelBuilder
             .Entity<Block>()
             .Property(block => block.Type)
-            .HasColumnName(TypeColumnName)
+            .HasColumnName(typeColumnName)
             .HasColumnType("TEXT")
             .IsRequired(false);
 
         modelBuilder
             .Entity<Block>()
             .Property(block => block.Position)
-            .HasColumnName(PositionColumnName)
+            .HasColumnName(positionColumnName)
             .HasColumnType("INT")
             .IsRequired(false);
 
         modelBuilder
             .Entity<Block>()
             .Property(block => block.OutpostId)
-            .HasColumnName(OutpostIdColumnName)
+            .HasColumnName(outpostIdColumnName)
             .HasColumnType("INTEGER")
             .IsRequired(false);
         
