@@ -5,13 +5,12 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-        <AssemblyVersion>1.0.0.9</AssemblyVersion>
-        <FileVersion>1.0.0.9</FileVersion>
+        <AssemblyVersion>1.0.1.0</AssemblyVersion>
+        <FileVersion>1.0.1.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="FastEndpoints" Version="5.18.0" />
-        <PackageReference Include="FluentValidation" Version="11.8.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
@@ -20,10 +19,28 @@
       <Content Include="..\..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+      <Content Remove="Endpoints\**" />
+      <Content Remove="Requests\**" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Offspace.Services.Outposts.Domain\Offspace.Services.Outposts.Domain.csproj" />
+      <ProjectReference Include="..\Offspace.Services.Outposts.Infrastructure\Offspace.Services.Outposts.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Endpoints\**" />
+      <Compile Remove="Requests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Endpoints\**" />
+      <EmbeddedResource Remove="Requests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Endpoints\**" />
+      <None Remove="Requests\**" />
     </ItemGroup>
 
 </Project>
