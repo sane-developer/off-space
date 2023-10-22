@@ -13,6 +13,8 @@ public interface IBlockRepository
     
     public Task<List<Block>> GetBlocksAsync(Predicate<Block> predicate);
     
+    public Task<int> GetBlockCountAsync(int outpostId);
+    
     public void UpdateBlockType(Block block, bool? isRoot);
     
     public void UpdateBlockOutpost(Block block, int? outpostId);
@@ -20,4 +22,5 @@ public interface IBlockRepository
     public void UpdateBlockPosition(Block block, int? position);
     
     public Task<bool> PushChangesAsync();
+    
 }

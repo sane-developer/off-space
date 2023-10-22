@@ -9,7 +9,11 @@ public interface IBlockService
 {
     public ValueTask<Block?> GetBlockAsync(int blockId);
     
+    public Task<Block?> GetBlockAsync(int position, int outpostId);
+    
     public Task<Block?> GetRootBlockInOutpostAsync(int outpostId);
+    
+    public Task<int> GetBlockCountInOutpostAsync(int outpostId);
     
     public Task<List<Block>> GetBlocksInOutpostAsync(int outpostId);
     
