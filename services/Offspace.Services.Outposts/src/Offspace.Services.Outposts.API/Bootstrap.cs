@@ -1,3 +1,6 @@
+global using FastEndpoints;
+global using FluentValidation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();

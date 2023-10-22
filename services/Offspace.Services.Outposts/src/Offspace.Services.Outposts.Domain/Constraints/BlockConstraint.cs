@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Offspace.Services.Outposts.Domain.Abstractions;
 using Offspace.Services.Outposts.Domain.Entities;
 
 namespace Offspace.Services.Outposts.Domain.Constraints;
@@ -7,7 +6,7 @@ namespace Offspace.Services.Outposts.Domain.Constraints;
 /// <summary>
 ///     Represents a set of constraints for the <see cref="Block"/> entity.
 /// </summary>
-public sealed class BlockConstraint : IEntityConstraint
+public static class BlockConstraint
 {
     private const string TableName = "block";
     
