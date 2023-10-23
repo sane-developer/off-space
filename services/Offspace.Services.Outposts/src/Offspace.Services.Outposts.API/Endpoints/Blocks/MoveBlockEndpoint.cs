@@ -26,15 +26,6 @@ public sealed class MoveBlockEndpoint : Endpoint<MoveBlockRequest>
     /// <summary>
     ///     Validates whether the block with the specified id can be moved to the requested position within the requested outpost.
     /// </summary>
-    /// <remarks>
-    ///     The block can only be moved to the requested position within the requested outpost when all of the conditions have been met:
-    ///     <list type="bullet">
-    ///         <item>The block position is between 0 and 49,</item>
-    ///         <item>The block with requested id exists,</item>
-    ///         <item>The block is attached to an outpost,</item>
-    ///         <item>There is no block at the requested position.</item>
-    ///     </list>
-    /// </remarks>
     public override async Task HandleAsync(MoveBlockRequest req, CancellationToken ct)
     {
         if (req.NewPosition is < BlockConstraint.MinimumBlockPosition or > BlockConstraint.MaximumBlockPosition)
