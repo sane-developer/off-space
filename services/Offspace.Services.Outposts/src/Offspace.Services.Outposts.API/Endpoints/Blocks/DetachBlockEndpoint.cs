@@ -25,13 +25,6 @@ public sealed class DetachBlockEndpoint : Endpoint<DetachBlockRequest>
     /// <summary>
     ///     Validates whether the block with the specified specification can be detached from the requested outpost.
     /// </summary>
-    /// <remarks>
-    ///     The block can only be detached from the requested outpost when all of the conditions have been met:
-    ///     <list type="bullet">
-    ///         <item>The block with requested id exists,</item>
-    ///         <item>The block is attached to an outpost.</item>
-    ///     </list>
-    /// </remarks>
     public override async Task HandleAsync(DetachBlockRequest req, CancellationToken ct)
     {
         var block = await _blockService.GetBlockAsync(req.BlockId);

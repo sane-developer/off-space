@@ -32,18 +32,6 @@ public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
     /// <summary>
     ///     Validates whether the block with the specified specification can be attached to the requested outpost.
     /// </summary>
-    /// <remarks>
-    ///     The block can only be attached to the requested outpost when all of the conditions have been met:
-    ///     <list type="bullet">
-    ///         <item>The block position is between 0 and 49,</item>
-    ///         <item>The block with requested id exists,</item>
-    ///         <item>The block is not attached to any outpost,</item>
-    ///         <item>The outpost with requested id exists,</item>
-    ///         <item>There is no block at the requested position,</item>
-    ///         <item>The overall block count in the outpost is less than the maximum allowed,</item>
-    ///         <item>In case the block is labeled as root; the outpost does not have already have a root block.</item>
-    ///     </list>
-    /// </remarks>
     public override async Task HandleAsync(AttachBlockRequest req, CancellationToken ct)
     {
         if (req.Position is < BlockConstraint.MinimumBlockPosition or > BlockConstraint.MaximumBlockPosition)
