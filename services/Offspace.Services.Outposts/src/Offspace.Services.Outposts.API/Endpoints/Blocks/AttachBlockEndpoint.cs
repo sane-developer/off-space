@@ -35,7 +35,7 @@ public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
     /// <remarks>
     ///     The block can only be attached to the requested outpost when all of the conditions have been met:
     ///     <list type="bullet">
-    ///         <item>The requested block position is between 0 and 49,</item>
+    ///         <item>The block position is between 0 and 49,</item>
     ///         <item>The block with requested id exists,</item>
     ///         <item>The block is not attached to any outpost,</item>
     ///         <item>The outpost with requested id exists,</item>
@@ -46,7 +46,7 @@ public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
     /// </remarks>
     public override async Task HandleAsync(AttachBlockRequest req, CancellationToken ct)
     {
-        if (req.Position is < 0 or > 49)
+        if (req.Position is < BlockConstraint.MinimumBlockPosition or > BlockConstraint.MaximumBlockPosition)
         {
             await SendErrorsAsync(StatusCodes.Status400BadRequest, ct);
             return;
