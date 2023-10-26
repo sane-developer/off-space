@@ -1,6 +1,6 @@
 ﻿using Offspace.Services.Outposts.API.Requests.Blocks;
 using Offspace.Services.Outposts.Domain.Constraints;
-using Offspace.Services.Outposts.Infrastructure.Services;
+using Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 namespace Offspace.Services.Outposts.API.Endpoints.Blocks;
 
@@ -13,12 +13,12 @@ public sealed class MoveBlockEndpoint : Endpoint<MoveBlockRequest>
     /// <summary>
     ///     The service which enables the user to manipulate the state of the verven blocks.
     /// </summary>
-    private readonly BlockService _blockService;
+    private readonly IBlockService _blockService;
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="MoveBlockEndpoint"/> class with the specified services.
     /// </summary>
-    public MoveBlockEndpoint(BlockService blockService)
+    public MoveBlockEndpoint(IBlockService blockService)
     {
         _blockService = blockService;
     }

@@ -8,29 +8,30 @@ namespace Offspace.Services.Outposts.Domain.Constraints;
 /// </summary>
 public static class OutpostConstraint
 {
-    private const string TableName = "outpost";
-    
-    private const string IdColumnName = "id";
-    
-    private const string NameColumnName = "name";
-    
+    /// <summary>
+    ///     Applies the constraints of the <see cref="Outpost"/> entity to the specified model builder.
+    /// </summary>
     public static void Apply(ModelBuilder modelBuilder)
     {
+        const string tableName = "outpost";
+        const string idColumnName = "id";
+        const string nameColumnName = "name";
+        
         modelBuilder
             .Entity<Outpost>()
-            .ToTable(TableName);
+            .ToTable(tableName);
         
         modelBuilder
             .Entity<Outpost>()
             .Property(outpost => outpost.Id)
-            .HasColumnName(IdColumnName)
+            .HasColumnName(idColumnName)
             .HasColumnType("INTEGER")
             .IsRequired();
         
         modelBuilder
             .Entity<Outpost>()
             .Property(outpost => outpost.Name)
-            .HasColumnName(NameColumnName)
+            .HasColumnName(nameColumnName)
             .HasColumnType("TEXT")
             .IsRequired();
         
