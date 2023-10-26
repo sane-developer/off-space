@@ -66,11 +66,11 @@ public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
         {
             var root = await _blockService.GetRootBlockInOutpostAsync(req.OutpostId);
         
-            if (root is null)
+            if (root is not null)
             {
                 await SendErrorsAsync(StatusCodes.Status409Conflict, ct);
                 return;
-            }   
+            }
         }
         
         var blockAtPosition = await _blockService.GetBlockAsync(req.Position, req.OutpostId);
