@@ -5,8 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-        <AssemblyVersion>1.0.2.6</AssemblyVersion>
-        <FileVersion>1.0.2.6</FileVersion>
+        <AssemblyVersion>1.0.2.7</AssemblyVersion>
+        <FileVersion>1.0.2.7</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
