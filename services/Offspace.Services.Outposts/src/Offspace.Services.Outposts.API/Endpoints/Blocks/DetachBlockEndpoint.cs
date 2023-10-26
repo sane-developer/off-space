@@ -1,5 +1,5 @@
 ﻿using Offspace.Services.Outposts.API.Requests.Blocks;
-using Offspace.Services.Outposts.Infrastructure.Services;
+using Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 namespace Offspace.Services.Outposts.API.Endpoints.Blocks;
 
@@ -12,12 +12,12 @@ public sealed class DetachBlockEndpoint : Endpoint<DetachBlockRequest>
     /// <summary>
     ///     The service which enables the user to manipulate the state of the verven blocks.
     /// </summary>
-    private readonly BlockService _blockService;
+    private readonly IBlockService _blockService;
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="DetachBlockEndpoint"/> class with the specified services.
     /// </summary>
-    public DetachBlockEndpoint(BlockService blockService)
+    public DetachBlockEndpoint(IBlockService blockService)
     {
         _blockService = blockService;
     }
