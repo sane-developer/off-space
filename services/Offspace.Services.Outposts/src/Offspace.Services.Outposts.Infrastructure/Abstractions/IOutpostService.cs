@@ -12,4 +12,6 @@ public interface IOutpostService
     public Task<Outpost?> CreateOutpostAsync(string outpostName);
 
     public Task<bool> IsOutpostNameTaken(string outpostName);
+    
+    public Task<bool> DeleteOutpostAsync(Outpost outpost);
 }

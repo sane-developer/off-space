@@ -71,7 +71,21 @@ public sealed class OutpostRepository : IOutpostRepository
     {
         _context.Outposts.Add(outpost);
     }
-    
+
+    /// <summary>
+    ///     Deletes the specified outpost from the database.
+    /// </summary>
+    /// <param name="outpost">
+    ///     The outpost to be deleted from the database.
+    /// </param>
+    /// <remarks>
+    ///     This method does not apply changes to the database.
+    /// </remarks>
+    public void DeleteOutpost(Outpost outpost)
+    {
+        _context.Outposts.Remove(outpost);
+    }
+
     /// <summary>
     ///     Saves all changes made to the database.
     /// </summary>

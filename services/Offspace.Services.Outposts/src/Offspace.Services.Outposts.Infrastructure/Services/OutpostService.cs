@@ -76,4 +76,20 @@ public sealed class OutpostService : IOutpostService
     {
         return await _repository.GetOutpostAsync(outpost => outpost.Name == outpostName) is not null;
     }
+
+    /// <summary>
+    ///     Deletes the specified outpost.
+    /// </summary>
+    /// <param name="outpost">
+    ///     The outpost to be deleted.
+    /// </param>
+    /// <returns>
+    ///     <see langword="true"/> if the outpost was deleted successfully; otherwise, <see langword="false"/>.
+    /// </returns>
+    public async Task<bool> DeleteOutpostAsync(Outpost outpost)
+    {
+        _repository.DeleteOutpost(outpost);
+        
+        return await _repository.PushChangesAsync();
+    }
 }
