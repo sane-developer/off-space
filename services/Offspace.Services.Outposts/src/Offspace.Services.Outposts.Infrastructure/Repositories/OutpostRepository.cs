@@ -87,6 +87,25 @@ public sealed class OutpostRepository : IOutpostRepository
     }
 
     /// <summary>
+    ///     Updates the name of the specified outpost.
+    /// </summary>
+    /// <param name="outpost">
+    ///     The outpost whose name should be updated.
+    /// </param>
+    /// <param name="newName">
+    ///     The new name of the outpost.
+    /// </param>
+    /// <remarks>
+    ///     This method does not apply changes to the database.
+    /// </remarks>
+    public void UpdateOutpostName(Outpost outpost, string newName)
+    {
+        outpost.Name = newName;
+        
+        _context.Outposts.Update(outpost);
+    }
+
+    /// <summary>
     ///     Saves all changes made to the database.
     /// </summary>
     /// <returns>
