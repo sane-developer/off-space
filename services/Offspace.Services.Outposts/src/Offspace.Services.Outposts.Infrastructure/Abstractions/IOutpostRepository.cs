@@ -8,4 +8,10 @@ namespace Offspace.Services.Outposts.Infrastructure.Abstractions;
 public interface IOutpostRepository
 {
     public ValueTask<Outpost?> GetOutpostAsync(int outpostId);
+    
+    public Task<Outpost?> GetOutpostAsync(Predicate<Outpost> predicate);
+    
+    public void InsertOutpost(Outpost outpost);
+    
+    public Task<bool> PushChangesAsync();
 }

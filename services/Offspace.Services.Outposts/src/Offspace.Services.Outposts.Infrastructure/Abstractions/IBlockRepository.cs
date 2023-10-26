@@ -22,5 +22,4 @@ public interface IBlockRepository
     public void UpdateBlockPosition(Block block, int? position);
     
     public Task<bool> PushChangesAsync();
-    
 }
