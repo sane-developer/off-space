@@ -15,5 +15,7 @@ public interface IOutpostRepository
     
     public void DeleteOutpost(Outpost outpost);
     
+    public void UpdateOutpostName(Outpost outpost, string newName);
+    
     public Task<bool> PushChangesAsync();
 }

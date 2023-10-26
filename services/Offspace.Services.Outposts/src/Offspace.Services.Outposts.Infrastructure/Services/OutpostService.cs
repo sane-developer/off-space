@@ -92,4 +92,23 @@ public sealed class OutpostService : IOutpostService
         
         return await _repository.PushChangesAsync();
     }
+
+    /// <summary>
+    ///     Renames the specified outpost.
+    /// </summary>
+    /// <param name="outpost">
+    ///     The outpost to be renamed.
+    /// </param>
+    /// <param name="newName">
+    ///     The new name of the outpost.
+    /// </param>
+    /// <returns>
+    ///     <see langword="true"/> if the outpost was renamed successfully; otherwise, <see langword="false"/>.
+    /// </returns>
+    public async Task<bool> RenameOutpostAsync(Outpost outpost, string newName)
+    {
+        _repository.UpdateOutpostName(outpost, newName);
+        
+        return await _repository.PushChangesAsync();
+    }
 }
