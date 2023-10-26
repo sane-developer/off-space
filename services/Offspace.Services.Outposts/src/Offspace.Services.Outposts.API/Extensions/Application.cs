@@ -5,7 +5,7 @@ namespace Offspace.Services.Outposts.API.Extensions;
 /// <summary>
 ///     Represents a set of extensions methods for configuring the application.
 /// </summary>
-public static class ConfigurationExtensions
+public static class Application
 {
     /// <summary>
     ///     The name of the application settings file.

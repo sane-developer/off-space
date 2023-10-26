@@ -8,4 +8,8 @@ namespace Offspace.Services.Outposts.Infrastructure.Abstractions;
 public interface IOutpostService
 {
     public ValueTask<Outpost?> GetOutpostAsync(int outpostId);
+    
+    public Task<Outpost?> CreateOutpostAsync(string outpostName);
+
+    public Task<bool> IsOutpostNameTaken(string outpostName);
 }
