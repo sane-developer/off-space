@@ -13,5 +13,7 @@ public interface IOutpostRepository
     
     public void InsertOutpost(Outpost outpost);
     
+    public void DeleteOutpost(Outpost outpost);
+    
     public Task<bool> PushChangesAsync();
 }
