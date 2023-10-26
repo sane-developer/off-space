@@ -23,7 +23,7 @@ public sealed class DetachBlockEndpoint : Endpoint<DetachBlockRequest>
     }
 
     /// <summary>
-    ///     Validates whether the block with the specified specification can be detached from the requested outpost.
+    ///     Validates whether the block with the requested specification can be detached from the outpost.
     /// </summary>
     public override async Task HandleAsync(DetachBlockRequest req, CancellationToken ct)
     {

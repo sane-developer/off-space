@@ -30,7 +30,7 @@ public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
     }
 
     /// <summary>
-    ///     Validates whether the block with the specified specification can be attached to the requested outpost.
+    ///     Validates whether the block with the requested specification can be attached to the outpost.
     /// </summary>
     public override async Task HandleAsync(AttachBlockRequest req, CancellationToken ct)
     {

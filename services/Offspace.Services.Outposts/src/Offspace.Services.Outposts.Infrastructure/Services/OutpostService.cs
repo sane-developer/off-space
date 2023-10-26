@@ -34,4 +34,46 @@ public sealed class OutpostService : IOutpostService
     {
         return await _repository.GetOutpostAsync(outpostId);
     }
+
+    /// <summary>
+    ///     Creates an outpost with the specified name.
+    /// </summary>
+    /// <param name="outpostName">
+    ///     The name of the outpost to be created.
+    /// </param>
+    /// <returns>
+    ///     <see langword="true"/> if the outpost was created successfully; otherwise, <see langword="false"/>.
+    /// </returns>
+    public async Task<Outpost?> CreateOutpostAsync(string outpostName)
+    {
+        var newOutpost = new Outpost
+        {
+            Name = outpostName
+        };
+        
+        _repository.InsertOutpost(newOutpost);
+        
+        var hasCreated = await _repository.PushChangesAsync();
+
+        if (!hasCreated)
+        {
+            return null;
+        }
+        
+        return await _repository.GetOutpostAsync(outpost => outpost.Name == newOutpost.Name);
+    }
+
+    /// <summary>
+    ///     Determines whether the specified outpost name is taken.
+    /// </summary>
+    /// <param name="outpostName">
+    ///     The name of the outpost to be checked.
+    /// </param>
+    /// <returns>
+    ///     <see langword="true"/> if the specified outpost name is taken; otherwise, <see langword="false"/>.
+    /// </returns>
+    public async Task<bool> IsOutpostNameTaken(string outpostName)
+    {
+        return await _repository.GetOutpostAsync(outpost => outpost.Name == outpostName) is not null;
+    }
 }
