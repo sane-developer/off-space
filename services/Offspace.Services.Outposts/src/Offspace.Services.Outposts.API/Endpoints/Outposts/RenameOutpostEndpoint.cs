@@ -1,13 +1,23 @@
-﻿using Offspace.Services.Outposts.API.Requests.Outposts;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Offspace.Services.Outposts.API.Requests.Outposts;
+using Offspace.Services.Outposts.API.Responses;
+using Offspace.Services.Outposts.API.Responses.Outposts;
 using Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 namespace Offspace.Services.Outposts.API.Endpoints.Outposts;
+
+using Responses = Results<
+    NoContent,
+    NotFound<Response>,
+    Conflict<Response>,
+    StatusCodeHttpResult
+>;
 
 /// <summary>
 ///     Represents an endpoint that enables the user to rename an outpost.
 /// </summary>
 [HttpPatch("/api/outposts/{outpostId:int}/rename")]
-public sealed class RenameOutpostEndpoint : Endpoint<RenameOutpostRequest>
+public sealed class RenameOutpostEndpoint : Endpoint<RenameOutpostRequest, Responses>
 {
     /// <summary>
     ///     The service which enables the user to manipulate the state of the outposts.
@@ -25,32 +35,29 @@ public sealed class RenameOutpostEndpoint : Endpoint<RenameOutpostRequest>
     /// <summary>
     ///     Validates whether the outpost with the requested specification can be renamed.
     /// </summary>
-    public override async Task HandleAsync(RenameOutpostRequest req, CancellationToken ct)
+    public override async Task<Responses> ExecuteAsync(RenameOutpostRequest req, CancellationToken ct)
     {
         var outpost = await _outpostService.GetOutpostAsync(req.OutpostId);
         
         if (outpost is null)
         {
-            await SendNotFoundAsync(ct);
-            return;
+            return TypedResults.NotFound<Response>(OutpostNotFoundResponse.Instance);
         }
         
         var isNameTaken = await _outpostService.IsOutpostNameTaken(req.Name);
         
         if (isNameTaken)
         {
-            await SendErrorsAsync(StatusCodes.Status409Conflict, ct);
-            return;
+            return TypedResults.Conflict<Response>(OutpostNameTakenResponse.Instance);
         }
         
         var hasRenamed = await _outpostService.RenameOutpostAsync(outpost, req.Name);
         
         if (!hasRenamed)
         {
-            await SendErrorsAsync(StatusCodes.Status500InternalServerError, ct);
-            return;
+            return TypedResults.StatusCode(StatusCodes.Status500InternalServerError);
         }
         
-        await SendNoContentAsync(ct);
+        return TypedResults.NoContent();
     }
 }
