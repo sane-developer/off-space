@@ -19,14 +19,14 @@ public static class BlockConstraint
     public const int AvailableBlocksPerOutpost = 24;
     
     /// <summary>
-    ///     The minimum position of a block in an outpost.
+    ///     The minimum position of a block in an outpost. The structure is represented in 7x7 grid.
     /// </summary>
     public const int MinimumBlockPosition = 0;
     
     /// <summary>
-    ///     The maximum position of a block in an outpost.
+    ///     The maximum position of a block in an outpost. The structure is represented in 7x7 grid.
     /// </summary>
-    public const int MaximumBlockPosition = 49;
+    public const int MaximumBlockPosition = 48;
     
     /// <summary>
     ///     Applies the constraints of the <see cref="Block"/> entity to the specified model builder.

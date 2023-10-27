@@ -1,6 +1,7 @@
 ﻿using Offspace.Services.Outposts.API.Extensions;
 using Offspace.Services.Outposts.API.Requests.Outposts;
 using Offspace.Services.Outposts.API.Responses;
+using Offspace.Services.Outposts.API.Responses.Outposts;
 using Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 namespace Offspace.Services.Outposts.API.Endpoints.Outposts;

@@ -1,14 +1,26 @@
-﻿using Offspace.Services.Outposts.API.Requests.Blocks;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Offspace.Services.Outposts.API.Requests.Blocks;
+using Offspace.Services.Outposts.API.Responses;
+using Offspace.Services.Outposts.API.Responses.Blocks;
+using Offspace.Services.Outposts.API.Responses.Outposts;
 using Offspace.Services.Outposts.Domain.Constraints;
 using Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 namespace Offspace.Services.Outposts.API.Endpoints.Blocks;
 
+using ResponsePool = Results<
+    NoContent, 
+    BadRequest<Response>, 
+    NotFound<Response>, 
+    Conflict<Response>, 
+    StatusCodeHttpResult
+>;
+
 /// <summary>
 ///     Represents an endpoint that enables the user to attach a block to the requested outpost.
 /// </summary>
 [HttpPatch("/api/blocks/{blockId:int}/attach")]
-public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
+public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest, ResponsePool>
 {
     /// <summary>
     ///     The service which enables the user to manipulate the state of the verven blocks.
@@ -32,34 +44,30 @@ public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
     /// <summary>
     ///     Validates whether the block with the requested specification can be attached to the outpost.
     /// </summary>
-    public override async Task HandleAsync(AttachBlockRequest req, CancellationToken ct)
+    public override async Task<ResponsePool> ExecuteAsync(AttachBlockRequest req, CancellationToken ct)
     {
         if (req.Position is < BlockConstraint.MinimumBlockPosition or > BlockConstraint.MaximumBlockPosition)
         {
-            await SendErrorsAsync(StatusCodes.Status400BadRequest, ct);
-            return;
+            return TypedResults.BadRequest<Response>(BlockOutOfGridResponse.Instance);
         }
         
         var block = await _blockService.GetBlockAsync(req.BlockId);
         
         if (block is null)
         {
-            await SendNotFoundAsync(ct);
-            return;
+            return TypedResults.NotFound<Response>(BlockNotFoundResponse.Instance);
         }
         
         if (block.OutpostId is not null)
         {
-            await SendErrorsAsync(StatusCodes.Status409Conflict, ct);
-            return;
+            return TypedResults.Conflict<Response>(BlockAlreadyAttachedResponse.Instance);
         }
         
         var outpost = await _outpostService.GetOutpostAsync(req.OutpostId);
         
         if (outpost is null)
         {
-            await SendNotFoundAsync(ct);
-            return;
+            return TypedResults.NotFound<Response>(OutpostNotFoundResponse.Instance);
         }
 
         if (req.IsRoot)
@@ -68,8 +76,7 @@ public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
         
             if (root is not null)
             {
-                await SendErrorsAsync(StatusCodes.Status409Conflict, ct);
-                return;
+                return TypedResults.Conflict<Response>(OutpostHasRootResponse.Instance);
             }
         }
         
@@ -77,26 +84,23 @@ public sealed class AttachBlockEndpoint : Endpoint<AttachBlockRequest>
         
         if (blockAtPosition is not null)
         {
-            await SendErrorsAsync(StatusCodes.Status409Conflict, ct);
-            return;
+            return TypedResults.Conflict<Response>(BlockCollisionResponse.Instance);
         }
         
         var countOfBlocksInOutpost = await _blockService.GetBlockCountInOutpostAsync(req.OutpostId);
         
         if (countOfBlocksInOutpost is BlockConstraint.AvailableBlocksPerOutpost)
         {
-            await SendErrorsAsync(StatusCodes.Status409Conflict, ct);
-            return;
+            return TypedResults.Conflict<Response>(OutpostReachedCapacityResponse.Instance);
         }
         
         var hasAttached = await _blockService.AttachBlockToOutpostAsync(block, req.IsRoot, req.Position, req.OutpostId);
         
         if (!hasAttached)
         {
-            await SendErrorsAsync(StatusCodes.Status500InternalServerError, ct);
-            return;
+            return TypedResults.StatusCode(StatusCodes.Status500InternalServerError);
         }
         
-        await SendNoContentAsync(ct);
+        return TypedResults.NoContent();
     }
 }

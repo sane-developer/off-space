@@ -1,4 +1,5 @@
 ﻿using Offspace.Services.Outposts.API.Responses;
+using Offspace.Services.Outposts.API.Responses.Outposts;
 using Offspace.Services.Outposts.Domain.Entities;
 
 namespace Offspace.Services.Outposts.API.Extensions;
