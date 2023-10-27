@@ -1,13 +1,23 @@
-﻿using Offspace.Services.Outposts.API.Requests.Outposts;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Offspace.Services.Outposts.API.Requests.Outposts;
+using Offspace.Services.Outposts.API.Responses;
+using Offspace.Services.Outposts.API.Responses.Outposts;
 using Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 namespace Offspace.Services.Outposts.API.Endpoints.Outposts;
+
+using Responses = Results<
+    NoContent,
+    NotFound<Response>,
+    Conflict<Response>,
+    StatusCodeHttpResult
+>;
 
 /// <summary>
 ///     Represents an endpoint that enables the user to delete an outpost.
 /// </summary>
 [HttpDelete("/api/outposts/{outpostId:int}")]
-public sealed class DeleteOutpostEndpoint : Endpoint<DeleteOutpostRequest>
+public sealed class DeleteOutpostEndpoint : Endpoint<DeleteOutpostRequest, Responses>
 {
     /// <summary>
     ///     The service which enables the user to manipulate the state of the blocks.
@@ -31,32 +41,29 @@ public sealed class DeleteOutpostEndpoint : Endpoint<DeleteOutpostRequest>
     /// <summary>
     ///     Validates whether the outpost with the specified id can be deleted.
     /// </summary>
-    public override async Task HandleAsync(DeleteOutpostRequest req, CancellationToken ct)
+    public override async Task<Responses> ExecuteAsync(DeleteOutpostRequest req, CancellationToken ct)
     {
         var outpost = await _outpostService.GetOutpostAsync(req.OutpostId);
         
         if (outpost is null)
         {
-            await SendNotFoundAsync(ct);
-            return;
+            return TypedResults.NotFound<Response>(OutpostNotFoundResponse.Instance);
         }
 
         var hasAnyBlocksAttached = await _blockService.GetBlockCountInOutpostAsync(req.OutpostId) > 0;
         
         if (hasAnyBlocksAttached)
         {
-            await SendErrorsAsync(StatusCodes.Status409Conflict, ct);
-            return;
+            return TypedResults.Conflict<Response>(OutpostNotEmptyResponse.Instance);
         }
         
         var hasDeleted = await _outpostService.DeleteOutpostAsync(outpost);
         
         if (!hasDeleted)
         {
-            await SendErrorsAsync(StatusCodes.Status500InternalServerError, ct);
-            return;
+            return TypedResults.StatusCode(StatusCodes.Status500InternalServerError);
         }
         
-        await SendNoContentAsync(ct);
+        return TypedResults.NoContent();
     }
 }
