@@ -1,4 +1,5 @@
-﻿using Offspace.Services.Outposts.API.Extensions;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Offspace.Services.Outposts.API.Extensions;
 using Offspace.Services.Outposts.API.Requests.Outposts;
 using Offspace.Services.Outposts.API.Responses;
 using Offspace.Services.Outposts.API.Responses.Outposts;
@@ -6,11 +7,17 @@ using Offspace.Services.Outposts.Infrastructure.Abstractions;
 
 namespace Offspace.Services.Outposts.API.Endpoints.Outposts;
 
+using Responses = Results<
+    Created<CreateOutpostResponse>,
+    Conflict<Response>,
+    StatusCodeHttpResult
+>;
+
 /// <summary>
 ///     Represents an endpoint that enables the user to create an outpost.
 /// </summary>
 [HttpPost("/api/outposts")]
-public sealed class CreateOutpostEndpoint : Endpoint<CreateOutpostRequest, CreateOutpostResponse>
+public sealed class CreateOutpostEndpoint : Endpoint<CreateOutpostRequest, Responses>
 {
     /// <summary>
     ///     The service which enables the user to manipulate the state of the outposts.
@@ -28,26 +35,24 @@ public sealed class CreateOutpostEndpoint : Endpoint<CreateOutpostRequest, Creat
     /// <summary>
     ///     Validates whether the outpost with the requested specification can be created.
     /// </summary>
-    public override async Task HandleAsync(CreateOutpostRequest req, CancellationToken ct)
+    public override async Task<Responses> ExecuteAsync(CreateOutpostRequest req, CancellationToken ct)
     {
         var isNameTaken = await _outpostService.IsOutpostNameTaken(req.Name);
 
         if (isNameTaken)
         {
-            await SendErrorsAsync(StatusCodes.Status409Conflict, ct);
-            return;
+            return TypedResults.Conflict<Response>(OutpostNameTakenResponse.Instance);
         }
 
         var createdOutpost = await _outpostService.CreateOutpostAsync(req.Name);
 
         if (createdOutpost is null)
         {
-            await SendErrorsAsync(StatusCodes.Status500InternalServerError, ct);
-            return;
+            return TypedResults.StatusCode(StatusCodes.Status500InternalServerError);
         }
 
         var response = createdOutpost.ToCreateOutpostResponse();
         
-        await SendCreatedAtAsync<CreateOutpostEndpoint>("/api/outposts", response, cancellation: ct);
+        return TypedResults.Created("api/outposts", response);
     }
 }
