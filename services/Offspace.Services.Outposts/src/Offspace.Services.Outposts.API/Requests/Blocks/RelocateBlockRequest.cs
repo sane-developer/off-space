@@ -3,7 +3,7 @@
 /// <summary>
 ///     Represents a request to move a block to a new position.
 /// </summary>
-public record RelocateBlockRequest
+public sealed record RelocateBlockRequest
 {
     /// <summary>
     ///     The id of the block to move.

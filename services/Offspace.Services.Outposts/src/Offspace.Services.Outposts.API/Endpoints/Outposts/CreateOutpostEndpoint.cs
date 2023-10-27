@@ -8,7 +8,7 @@ using Offspace.Services.Outposts.Infrastructure.Abstractions;
 namespace Offspace.Services.Outposts.API.Endpoints.Outposts;
 
 using Responses = Results<
-    Created<CreateOutpostResponse>,
+    Created<OutpostCreatedResponse>,
     Conflict<Response>,
     StatusCodeHttpResult
 >;
@@ -51,7 +51,7 @@ public sealed class CreateOutpostEndpoint : Endpoint<CreateOutpostRequest, Respo
             return TypedResults.StatusCode(StatusCodes.Status500InternalServerError);
         }
 
-        var response = createdOutpost.ToCreateOutpostResponse();
+        var response = createdOutpost.ToOutpostCreatedResponse();
         
         return TypedResults.Created("api/outposts", response);
     }

@@ -3,7 +3,7 @@
 /// <summary>
 ///     Represents a request to delete an outpost.
 /// </summary>
-public record DeleteOutpostRequest
+public sealed record DeleteOutpostRequest
 {
     /// <summary>
     ///     The id of the outpost to be deleted.

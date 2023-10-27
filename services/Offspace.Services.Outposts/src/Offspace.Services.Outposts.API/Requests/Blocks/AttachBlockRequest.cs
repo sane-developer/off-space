@@ -5,7 +5,7 @@ namespace Offspace.Services.Outposts.API.Requests.Blocks;
 /// <summary>
 ///     Represents a request to attach a block to an outpost.
 /// </summary>
-public record AttachBlockRequest
+public sealed record AttachBlockRequest
 {
     /// <summary>
     ///     The id of the block to attach.

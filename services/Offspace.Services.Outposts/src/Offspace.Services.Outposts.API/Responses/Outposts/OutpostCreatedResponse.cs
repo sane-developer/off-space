@@ -1,9 +1,9 @@
 ﻿namespace Offspace.Services.Outposts.API.Responses.Outposts;
 
 /// <summary>
-///     Represents a response to a request to create an outpost.
+///     Represents a response indicating that the outpost was created.
 /// </summary>
-public sealed record CreateOutpostResponse
+public sealed record OutpostCreatedResponse
 {
     /// <summary>
     ///     The id of the created outpost.

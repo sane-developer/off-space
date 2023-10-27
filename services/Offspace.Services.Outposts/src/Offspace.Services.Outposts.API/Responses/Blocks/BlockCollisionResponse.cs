@@ -1,7 +1,7 @@
 ﻿namespace Offspace.Services.Outposts.API.Responses.Blocks;
 
 /// <summary>
-///     Represents a response that indicates that the position is already occupied by another block in the outpost.
+///     Represents a response indicating that the position is already occupied by another block in the outpost.
 /// </summary>
 public sealed record BlockCollisionResponse : Response
 {

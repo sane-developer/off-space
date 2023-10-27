@@ -1,7 +1,7 @@
 ﻿namespace Offspace.Services.Outposts.API.Responses.Blocks;
 
 /// <summary>
-///     Represents a response which indicates that the block is not attached to any outpost.
+///     Represents a response indicating that the block is not attached to any outpost.
 /// </summary>
 public sealed record BlockNotAttachedResponse : Response
 {

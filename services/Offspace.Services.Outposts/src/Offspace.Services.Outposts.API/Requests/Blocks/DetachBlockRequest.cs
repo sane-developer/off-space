@@ -3,7 +3,7 @@
 /// <summary>
 ///     Represents a request to detach a block from an outpost.
 /// </summary>
-public record DetachBlockRequest
+public sealed record DetachBlockRequest
 {
     /// <summary>
     ///     The id of the block to detach.

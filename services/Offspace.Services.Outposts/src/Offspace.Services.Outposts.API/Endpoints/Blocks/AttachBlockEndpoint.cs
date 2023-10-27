@@ -9,10 +9,10 @@ using Offspace.Services.Outposts.Infrastructure.Abstractions;
 namespace Offspace.Services.Outposts.API.Endpoints.Blocks;
 
 using ResponsePool = Results<
-    NoContent, 
-    BadRequest<Response>, 
-    NotFound<Response>, 
-    Conflict<Response>, 
+    NoContent,
+    BadRequest<Response>,
+    NotFound<Response>,
+    Conflict<Response>,
     StatusCodeHttpResult
 >;
 

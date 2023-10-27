@@ -3,7 +3,7 @@
 /// <summary>
 ///     Represents a request to rename an outpost.
 /// </summary>
-public record RenameOutpostRequest
+public sealed record RenameOutpostRequest
 {
     /// <summary>
     ///     The id of the outpost to be renamed.

@@ -3,7 +3,7 @@
 /// <summary>
 ///     Represents a request to create an outpost.
 /// </summary>
-public record CreateOutpostRequest
+public sealed record CreateOutpostRequest
 {
     /// <summary>
     ///     The name of the outpost.
