@@ -44,14 +44,14 @@ public sealed class RenameOutpostEndpoint : Endpoint<RenameOutpostRequest, Respo
             return TypedResults.NotFound<Response>(OutpostNotFoundResponse.Instance);
         }
         
-        var isNameTaken = await _outpostService.IsOutpostNameTaken(req.Name);
+        var isNameTaken = await _outpostService.IsOutpostNameTaken(req.NewName);
         
         if (isNameTaken)
         {
             return TypedResults.Conflict<Response>(OutpostNameTakenResponse.Instance);
         }
         
-        var hasRenamed = await _outpostService.RenameOutpostAsync(outpost, req.Name);
+        var hasRenamed = await _outpostService.RenameOutpostAsync(outpost, req.NewName);
         
         if (!hasRenamed)
         {

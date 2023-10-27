@@ -16,6 +16,6 @@ public record RenameOutpostRequest
     ///     The new name of the outpost.
     /// </summary>
     [FromQueryParams]
-    [BindFrom("name")]
-    public required string Name { get; init; } = default!;
+    [BindFrom("newName")]
+    public required string NewName { get; init; } = default!;
 }
